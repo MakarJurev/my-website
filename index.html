@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Python Programming Language</title>
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+        <link rel="stylesheet" href="styles.css" />
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=PfnXNXAz28WgTUkHM1YzrHcXi3npH-YWvTn5g8V8LG7WsyXn5Wp7vzdW_8A0yhjESOfpCLqKa_-sLhgPEhW_2898qeejOBlWEWqVqBAW18kMLeJwlt1m-K3wuzTjgU9j4Yu_OEWlBFuUn3WcNNkx5w_ZxwWCFe7qGZQSYHGnPhFfrLWc3UTQR9-kAl9iWCVIyiXK-1el7LV8PMab3m_o9OOE32SYhldMpvYZGLoKizrlqOGX0qFPCc7Tu6Bjl3mZyQcYUTo0Fra7OJ-fGoVExw" charset="UTF-8"></script></head>
+    <body>
+        <header>
+            <h1>Python Programming Language</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#history">History</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#examples">Code Examples</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="history">
+                <h2>History of Python</h2>
+                <p>
+                    Python was conceived in the late 1980s, and its implementation was started in December 1989 by Guido
+                    van Rossum at Centrum Wiskunde & Informatica (CWI) in the Netherlands as a successor to the ABC
+                    programming language.
+                    <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank"
+                        >Learn more about Python on Wikipedia</a
+                    >
+                </p>
+                <img src="https://www.python.org/static/img/python-logo@2x.png" alt="Python Example" id="right" />
+            </section>
+
+            <section id="overview">
+                <h2>Overview of Python</h2>
+                <p>
+                    Python is an interpreted high-level general-purpose programming language. Its design philosophy
+                    emphasizes code readability with the use of significant indentation.
+                </p>
+                <img src="https://www.python.org/static/img/python-logo@2x.png" alt="Python Example" />
+            </section>
+
+            <section id="examples">
+                <h2>Code Examples</h2>
+                <pre><code id=highlight>
+global _start
+
+section .data
+    input_prompt db "Введите строку: ", 0
+    prompt_len equ $-input_prompt
+    </code>
+    <code>
+
+section .bss
+    buffer resb 256
+
+section .text
+
+_start:
+    mov eax, 4              
+    mov ebx, 1              
+    mov ecx, input_prompt   
+    mov edx, prompt_len     
+    int 0x80                
+
+    mov eax, 3              
+    mov ebx, 0              
+    mov ecx, buffer         
+    mov edx, 255            
+    int 0x80                
+
+    mov byte [ecx+eax-1], 0
+
+    lea esi, [buffer]       
+    lea edi, [buffer]       
+
+    xor eax, eax            
+
+skip_leading_spaces:
+    lodsb                   
+    cmp al, ' '
+    je skip_leading_spaces
+
+skip_first_word:
+    cmp al, ' '
+    jne .read_next          
+    jmp .copy_loop          
+
+.read_next:
+    lodsb                   
+    cmp al, ' '
+    je .skip_extra_spaces   
+    test al, al
+    jnz .read_next
+    jmp .done               
+
+.skip_extra_spaces:
+    lodsb                   
+    cmp al, ' '
+    je .skip_extra_spaces
+    dec esi                 
+
+.copy_loop:
+    lodsb                   
+    test al, al
+    jz .done                
+    cmp al, ' '
+    je .handle_space
+    stosb                   
+    jmp .copy_loop
+
+.handle_space:
+    mov byte [edi], ' '    
+    inc edi                
+    .skip_consecutive_spaces:
+        lodsb
+        cmp al, ' '
+        je .skip_consecutive_spaces
+        test al, al
+        jz .done            
+        dec esi             
+        jmp .copy_loop
+
+.done:
+    mov byte [edi], 0xa
+    inc edi
+    mov byte [edi], 0      
+
+    mov eax, 4             
+    mov ebx, 1             
+    mov ecx, buffer        
+    mov edx, edi           
+    sub edx, buffer
+    int 0x80               
+
+    mov eax, 1             
+    xor ebx, ebx           
+    int 0x80               
+            </code></pre>
+                <img src="https://www.python.org/static/img/python-logo@2x.png" alt="Python Example" id="left" />
+            </section>
+
+            <section id="additional-info">
+                <h2>Additional Information</h2>
+                <table class="t1">
+                    <caption>
+                        Most Downloaded Movies on BitTorrent, 2011
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Movie</th>
+                            <th>Downloads</th>
+                            <th>Grosses</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>Fast Five</td>
+                            <td>9,260,000</td>
+                            <td>$626,137,675</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>The Hangover II</td>
+                            <td>8,840,000</td>
+                            <td>$581,464,305</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>Thor</td>
+                            <td>8,330,000</td>
+                            <td>$449,326,618</td>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <td>Source Code</td>
+                            <td>7,910,000</td>
+                            <td>$123,278,618</td>
+                        </tr>
+                        <tr>
+                            <th>5</th>
+                            <td>I Am Number Four</td>
+                            <td>7,670,000</td>
+                            <td>$144,500,437</td>
+                        </tr>
+                        <tr>
+                            <th>6</th>
+                            <td>Sucker Punch</td>
+                            <td>7,200,000</td>
+                            <td>$89,792,502</td>
+                        </tr>
+                        <tr>
+                            <th>7</th>
+                            <td>127 Hours</td>
+                            <td>6,910,000</td>
+                            <td>$60,738,797</td>
+                        </tr>
+                        <tr>
+                            <th>8</th>
+                            <td>Rango</td>
+                            <td>6,480,000</td>
+                            <td>$245,155,348</td>
+                        </tr>
+                        <tr>
+                            <th>9</th>
+                            <td>The King’s Speech</td>
+                            <td>6,250,000</td>
+                            <td>$414,211,549</td>
+                        </tr>
+                        <tr>
+                            <th>10</th>
+                            <td>Harry Potter and the Deathly Hallows Part 2</td>
+                            <td>6,030,000</td>
+                            <td>$1,328,111,219</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="4">torrentfreak.com</th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <ol>
+                    <li>Readability</li>
+                    <li>Community Support</li>
+                    <li>Extensive Libraries</li>
+                    <li>Hello world!</li>
+                </ol>
+
+                <ul>
+                    <li>Simple Syntax</li>
+                    <li>Dynamic Typing</li>
+                    <li>Vast Libraries</li>
+                </ul>
+
+                <ul class="custom-marker">
+                    <li>Easy to learn</li>
+                    <li>Versatile</li>
+                    <li>Powerful</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <h2>References</h2>
+            <ul>
+                <li>
+                    <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank"
+                        >Python on Wikipedia</a
+                    >
+                </li>
+            </ul>
+
+            <h2>Used Tags and CSS Properties</h2>
+            <ul>
+                <li>
+                    <strong>HTML Tags:</strong> html, head, meta, title, link, body, header, h1, nav, ul, li, a, main,
+                    section, h2, p, img, pre, code, table, tr, th, td, ol, footer, strong
+                </li>
+                <li>
+                    <strong>CSS Properties:</strong> display, margin, padding, font-size, color, background-color,
+                    text-align, border, width, height, float, clear, font-family, line-height, list-style, content,
+                    position, top, left, right, bottom, z-index, box-shadow, text-decoration, hover, focus, before,
+                    after
+                </li>
+            </ul>
+        </footer>
+    </body>
+</html>
